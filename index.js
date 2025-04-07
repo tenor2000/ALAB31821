@@ -16,8 +16,8 @@ app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   const data = {
-    title: "Rendering with Express and EJS is fun.",
-    content: "Blah blah blah.",
+    title: "Exress and EJS",
+    content: "Rendering with Express and EJS is fun.",
   };
 
   res.render("homeview", data);
@@ -25,8 +25,8 @@ app.get("/", (req, res) => {
 
 app.get("/about", (req, res) => {
   const data = {
-    title: "About Page",
-    content: "Here is a picture of a cat.",
+    title: "This page is about a kitten.",
+    content: "Here is a picture of a kitten sleeping.",
   };
 
   res.render("aboutview", data);
@@ -41,9 +41,18 @@ app.get("/contact", (req, res) => {
   res.render("homeview", data);
 });
 
+app.get("/login", (req, res) => {
+  const data = {
+    title: "This is a rendered Log in page",
+    content: "Blah blah blah.",
+  };
+
+  res.render("homeview", data);
+});
+
 // For button
 app.get("/download", (req, res) => {
-  console.log("download");
+  console.log("downloading");
   res.download("./public/images/pexels-oday-774936370-21937870.jpg");
 });
 
