@@ -9,14 +9,30 @@ const port = 3100;
 app.use(express.static("./styles"));
 app.use(express.static("./public"));
 
+// Middleware for logging
+app.use("/download/:imageFile", (req, res, next) => {
+  console.log(
+    "Time at Download Request:",
+    new Date(Date.now()).toLocaleString()
+  );
+  next();
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something you did caused an Internal Server Error!");
+});
+
 app.engine("ejs", ejs.renderFile);
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
+// Routes
 app.get("/", (req, res) => {
   const data = {
-    title: "Exress and EJS",
+    title: "Express and EJS",
     content: "Rendering with Express and EJS is fun.",
   };
 
@@ -34,8 +50,8 @@ app.get("/about", (req, res) => {
 
 app.get("/contact", (req, res) => {
   const data = {
-    title: "This is a rendered Contact page",
-    content: "Blah blah blah.",
+    title: "Contact Page",
+    content: "Under Construction.",
   };
 
   res.render("homeview", data);
@@ -43,17 +59,20 @@ app.get("/contact", (req, res) => {
 
 app.get("/login", (req, res) => {
   const data = {
-    title: "This is a rendered Log in page",
-    content: "Blah blah blah.",
+    title: "Log in if you dare!",
+    content: "Under Construction.",
   };
 
   res.render("homeview", data);
 });
 
 // For button
-app.get("/download", (req, res) => {
-  console.log("downloading");
-  res.download("./public/images/pexels-oday-774936370-21937870.jpg");
+app.get("/download/:imageFile", (req, res) => {
+  try {
+    res.download("./public/images/" + req.params.imageFile);
+  } catch (err) {
+    return res.status(404).send("Image not found!");
+  }
 });
 
 app.listen(port, () => {
