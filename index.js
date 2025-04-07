@@ -44,7 +44,7 @@ app.get("/contact", (req, res) => {
 // For button
 app.get("/download", (req, res) => {
   console.log("download");
-  res.download("./public/pexels-oday-774936370-21937870.jpg");
+  res.download("./public/images/pexels-oday-774936370-21937870.jpg");
 });
 
 app.listen(port, () => {
