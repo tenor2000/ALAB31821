@@ -8,11 +8,11 @@
   </head>
   <body>
     <%- include('header'); %>
-    <div id="main">
+    <main>
       <h1><%- title %></h1>
       <div class="image-container">
         <img
-          src="/images/pexels-oday-774936370-21937870.jpg"
+          src="<%= imgSrc %>"
           alt="cat photo"
           width="400"
           height="400"
@@ -25,7 +25,7 @@
           >Download It</a
         >
       </div>
-    </div>
+    </main>
     <%- include('footer'); %>
   </body>
 </html>

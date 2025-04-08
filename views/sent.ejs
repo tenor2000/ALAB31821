@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('header'); %>
+    <main>
+      <h1><%- title %></h1>
+      <img
+        src="<%= imgSrc %>"
+        alt="cat photo"
+        width="400"
+        height="400"
+        class="image"
+      />
+      <p><%- content %></p>
+      <h3>
+        Believe it or not, you will be redirected in
+        <span id="count">5</span> seconds
+      </h3>
+    </main>
+    <%- include('footer'); %>
+  </body>
+  <script>
+    let seconds = 5;
+    const countElement = document.getElementById("count");
+    const timer = setInterval(() => {
+      seconds--;
+      countElement.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = "/";
+      }
+    }, 1000);
+  </script>
+</html>

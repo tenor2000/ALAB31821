@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #f4f4f4;
+  --primary-color: white;
   --dark-color: black;
   --light-color: #f4f4f4;
   --danger-color: red;
@@ -30,7 +30,7 @@ body {
 }
 
 header {
-  color: white;
+  color: var(--primary-color);
   background: linear-gradient(var(--dark-color), var(--danger-color));
   border-radius: 5px;
   width: 80%;
@@ -54,10 +54,8 @@ nav ul {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   text-align: center;
-  color: white;
+  color: var(--primary-color);
   background: linear-gradient(var(--danger-color), var(--dark-color));
   padding: 0;
   border-radius: 5px;
@@ -65,7 +63,7 @@ footer {
 }
 
 li a {
-  color: white;
+  color: var(--primary-color);
   text-decoration: none;
   transition: all 0.3s ease-in-out;
 }
@@ -73,12 +71,19 @@ li a:hover {
   color: blue;
 }
 
-.main {
+main {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .button-container {
@@ -105,6 +110,17 @@ li a:hover {
 .button:hover {
   background: var(--success-color);
   color: lightblue;
+}
+
+.input {
+  border: var(--primary-color) 1px solid;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 0.5rem;
+  box-shadow: 5px 5px 5px gray;
 }
 
 .image-container {

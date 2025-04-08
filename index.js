@@ -18,6 +18,11 @@ app.use("/download/:imageFile", (req, res, next) => {
   next();
 });
 
+app.post("/contact", (req, res, next) => {
+  console.log("Form Submitted:", new Date(Date.now()).toLocaleString());
+  next();
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -42,20 +47,32 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
   const data = {
     title: "This page is about a kitten.",
+    imgSrc: "/images/pexels-oday-774936370-21937870.jpg",
     content: "Here is a picture of a kitten sleeping.",
   };
 
   res.render("aboutview", data);
 });
 
-app.get("/contact", (req, res) => {
-  const data = {
-    title: "Contact Page",
-    content: "Under Construction.",
-  };
+app
+  .route("/contact")
+  .get((req, res) => {
+    const data = {
+      title: "Contact Page",
+      content: "Send us a comment!",
+    };
 
-  res.render("homeview", data);
-});
+    res.render("contactview", data);
+  })
+  .post((req, res) => {
+    const data = {
+      title: "Contact Page",
+      imgSrc: "https://media.tenor.com/fRwU2Z3GKtgAAAAM/busy-working.gif",
+      content: "Send us a comment!",
+    };
+
+    res.render("sent", data);
+  });
 
 app.get("/login", (req, res) => {
   const data = {
