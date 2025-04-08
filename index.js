@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const ejs = require("ejs");
+const urlencode = require("urlencode");
 
 const app = express();
 const port = 3100;
@@ -9,17 +10,14 @@ const port = 3100;
 app.use(express.static("./styles"));
 app.use(express.static("./public"));
 
+app.use(express.urlencoded({ extended: true }));
+
 // Middleware for logging
 app.use("/download/:imageFile", (req, res, next) => {
   console.log(
     "Time at Download Request:",
     new Date(Date.now()).toLocaleString()
   );
-  next();
-});
-
-app.post("/contact", (req, res, next) => {
-  console.log("Form Submitted:", new Date(Date.now()).toLocaleString());
   next();
 });
 
@@ -68,8 +66,11 @@ app
     const data = {
       title: "Contact Page",
       imgSrc: "https://media.tenor.com/fRwU2Z3GKtgAAAAM/busy-working.gif",
-      content: "Send us a comment!",
+      content: "Your Opinion has been Noted!",
     };
+
+    console.log("Form Submitted:", new Date(Date.now()).toLocaleString());
+    console.log(req.body);
 
     res.render("sent", data);
   });
